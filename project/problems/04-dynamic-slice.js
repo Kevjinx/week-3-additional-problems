@@ -17,8 +17,25 @@
 */
 
 function dynamicSlice(start, end) {
-    
+  if (start < 0) {
+    start = 0;
+  } else if (end < 0) {
+    return [];
+  }
+
+  return (arr) => {
+    return [...arr.slice(start, end), ...arr.slice(end, arr.length)]
+  }
+
 }
+
+const slicer = dynamicSlice(2,4);
+console.log(slicer([0, 1, 2, 3])); // prints [ 2, 3 ]
+console.log(slicer([2, 4, 'hello', false])); // prints ['hello', false]
+
+const slicer2 = dynamicSlice(-2, 10);
+console.log(slicer2([0,1,2,3])); // prints [0, 1, 2, 3]
+
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
